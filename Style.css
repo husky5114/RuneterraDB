@@ -1,36 +1,3 @@
-html {
-}
-
-body {
-    margin: 0%;
-}
-h1 {
-    text-align: center;
-    background: rgb(42, 42, 42);
-    border: 20px solid rgb(42, 42, 42);
-    margin: 0%;
-}
-
-#Logo {
-    width: 15%;
-}
-
-#regions {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0%;
-    text-align: center;
-    background: linear-gradient(to top, black, dimgray);
-}
-
-.regionImage {
-    width: 5%;
-}
-
-#cards{
-    background: rgb(42, 42, 42);
-}
-
-.card {
-    width: 10%;
-}
+.hover_img a { position:relative; }
+.hover_img a span { position:absolute; display:none; z-index:99; }
+.hover_img a:hover span { display:block; }
