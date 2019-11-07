@@ -25,6 +25,7 @@ function displayCards(rCounts){
             var image = document.createElement("img");
             image.setAttribute("src", "Resources/Card_Images/01" + region + "0" + j.toString() + ".png");
             image.setAttribute("class", "card");
+            image.setAttribute("onerror", "this.style.display='none'")
             document.getElementById("cards").appendChild(image);
         }
     }
