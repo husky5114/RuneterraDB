@@ -1,10 +1,19 @@
 html {
+    height: 100%;
 }
 
 body {
+    height: 100%;
     margin: 0%;
 }
+
+:focus {
+    outline-color: dimgray;
+}
+
 h1 {
+    position: relative;
+    z-index: 2;
     text-align: center;
     background: rgb(42, 42, 42);
     border: 20px solid rgb(42, 42, 42);
@@ -12,22 +21,61 @@ h1 {
 }
 
 #Logo {
+    position: relative;
     width: 15%;
 }
 
 #regions {
+    position: relative;
+    z-index: 1;
     position: -webkit-sticky;
     position: sticky;
     top: 0%;
     text-align: center;
     background: linear-gradient(to top, black, dimgray);
+    width: 100%;
+
 }
 
+
 .regionImage {
+    position: relative;
+    width: 5%;    
+    transition: all .25s ease-out;
+}
+
+
+.regionImage:hover {
+    -moz-box-shadow:     0px 3px 18px black;
+    -webkit-box-shadow:  0px 3px 18px black;
+    box-shadow:          0px 3px 18px black;
+}
+
+.regionImage:focus {
+    -moz-box-shadow:     0px 3px 18px black;
+    -webkit-box-shadow:  0px 3px 18px black;
+    box-shadow:          0px 3px 18px black;
+}
+
+
+.regionImagePressed {
+    position: relative;
     width: 5%;
+    box-shadow: inset 0px 6px 18px black;
+    transition: all .25s ease-out;
+}
+
+.regionImagePressed:hover {
+    background: dimgray;
+}
+
+.regionImagePressed:focus {
+    background: dimgray;
 }
 
 #cards{
+    position: relative;
+    z-index: 0;
     background: rgb(42, 42, 42);
 }
 
