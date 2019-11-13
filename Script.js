@@ -24,11 +24,13 @@ function displayRegionHeader(){
         var region = regionNames[i];
         var image = document.createElement("img");
         image.setAttribute("src", "Resources/Region_images/icon-" + region + ".png");
+        image.setAttribute("id", region);
+        image.setAttribute("onclick", "filter('"+region+"')");
         if(region == "all"){
-                image.setAttribute("class", "regionImagePressed");
+                setHeader(image,true);
         }
         else{
-                image.setAttribute("class", "regionImage");
+                setHeader(image,false);
         }
         document.getElementById("regions").appendChild(image);
     }
@@ -52,43 +54,52 @@ function initializeAllCards(){
 function displayRegionCards(region){
     if(region == "all"){
         var allCards = document.getElementsByClassName("card");
-        allCards.forEach(function(card){
-                card.style.display = "inline";
-            }
-        );
+        for(var i=0; i<allCards.length; ++i){
+            allCards[i].style.display = "inline";
+        }
     }
     else{
-        var rCount = regionCounts[region];
+        var rCount = regionCounts[region][0];
         for(var i=1; i<rCount; ++i){
             var card = document.getElementById(region+i.toString());
-            card.style.display = "in-line";
+            console.log(card);
+            card.style.display = "inline";
         }
     }
 }
 
 function filter(region){
     var all = document.getElementById("all");
-    if(region == all){
+    if(region == "all"){
         var activeRegions = document.getElementsByClassName("regionImagePressed");
-        activeRegions.forEach(function(region) {
-                region.setAttribute("class","regionImage");
-            }
-        );
-        region.setAttribute("class", "regionImagePressed");
+        console.log(activeRegions);
+        for(var i=0; i<activeRegions.length; ++i){
+            console.log(activeRegions[i]);
+            setHeader(activeRegions[i],false);
+            console.log(activeRegions);
+        }
+        setHeader(all,true);
     }
     else{
         if(all.getAttribute("class") == "regionImagePressed"){
-            all.setAttribute("class", "regionImage");
+            setHeader(all,false);
             var cards = document.getElementsByClassName("card");
             for(var i=0; i < cards.length; ++i){
                     cards[i].style.display = "none";
             }
         }
-        else{
-
-        }
+        var activeRegion = document.getElementById(region);
+        setHeader(activeRegion,true);
+        
     }
     displayRegionCards(region);
 }
 
-
+function setHeader(region, bool){
+    if(bool){
+        region.setAttribute("class", "regionImagePressed");
+    }
+    else{
+        region.setAttribute("class","regionImage");
+    }
+}
