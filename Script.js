@@ -39,31 +39,46 @@ function displayRegionHeader(){
 function initializeAllCards(){
     var rCountsArray = Object.values(regionCounts);
     for(var i=0; i < rCountsArray.length; ++i){
-        var region = rCountsArray[i][0];
+        var regionShort = rCountsArray[i][0];
         for(var j=1; j <= rCountsArray[i][1]; ++j){
             var image = document.createElement("img");
-            image.setAttribute("src", "Resources/Card_Images/01" + region + "0" + j.toString() + ".png");
-            image.setAttribute("id", region+j.toString());
-            image.setAttribute("class", "card "+region);
+            var idNum = padZeros_s(j.toString(),3);
+            image.setAttribute("src", "Resources/Card_Images/01" + regionShort + idNum + ".png");
+            image.setAttribute("id", regionShort+idNum);
+            image.setAttribute("class", "card " + regionShort);
             image.setAttribute("onerror", "this.parentNode.removeChild(this)");
             document.getElementById("cards").appendChild(image);
         }
     }
 }
 
-function displayRegionCards(region){
+function displayRegionCards(region, show=true){
     if(region == "all"){
-        var allCards = document.getElementsByClassName("card");
+        var allCards = document.querySelectorAll(".card");
         for(var i=0; i<allCards.length; ++i){
-            allCards[i].style.display = "inline";
+            if(show){
+                allCards[i].style.display = "inline";
+            }
+            else{
+                allCards[i].style.display = "none";
+            }
         }
     }
     else{
-        var rCount = regionCounts[region][0];
+        var rCount = regionCounts[region][1];
+        var regionShort = regionCounts[region][0];
         for(var i=1; i<rCount; ++i){
-            var card = document.getElementById(region+i.toString());
+            var card = document.getElementById(regionShort+padZeros_s(i.toString(),3));
             console.log(card);
-            card.style.display = "inline";
+            try{
+                if(show){
+                    card.style.display = "inline";
+                }
+                else{
+                    card.style.display = "none";
+                }
+            }
+            catch{};
         }
     }
 }
@@ -71,35 +86,53 @@ function displayRegionCards(region){
 function filter(region){
     var all = document.getElementById("all");
     if(region == "all"){
-        var activeRegions = document.getElementsByClassName("regionImagePressed");
-        console.log(activeRegions);
+        var activeRegions = document.querySelectorAll(".regionImagePressed");
         for(var i=0; i<activeRegions.length; ++i){
-            console.log(activeRegions[i]);
             setHeader(activeRegions[i],false);
-            console.log(activeRegions);
         }
         setHeader(all,true);
     }
     else{
         if(all.getAttribute("class") == "regionImagePressed"){
             setHeader(all,false);
-            var cards = document.getElementsByClassName("card");
-            for(var i=0; i < cards.length; ++i){
-                    cards[i].style.display = "none";
-            }
+            displayRegionCards("all",false);
         }
         var activeRegion = document.getElementById(region);
         setHeader(activeRegion,true);
-        
     }
     displayRegionCards(region);
 }
 
-function setHeader(region, bool){
+function unfilter(region){
+    var regionButton = document.getElementById(region);
+    if(isDown(regionButton)){
+        displayRegionCards(region,false);
+        setHeader(regionButton,false);
+    }
+    if(document.querySelectorAll(".regionImagePressed").length == 0){
+        var all = document.getElementById("all");
+        setHeader(all,true);
+        displayRegionCards("all");
+    }
+}
+
+function isDown(regionButton){
+    return regionButton.getAttribute("class") == "regionImagePressed";
+}
+
+function setHeader(regionButton, bool){
     if(bool){
-        region.setAttribute("class", "regionImagePressed");
+        regionButton.setAttribute("class", "regionImagePressed");
+        regionButton.setAttribute("onclick", "unfilter('"+regionButton.getAttribute("id")+"')");
     }
     else{
-        region.setAttribute("class","regionImage");
+        regionButton.setAttribute("class","regionImage");
+        regionButton.setAttribute("onclick", "filter('"+regionButton.getAttribute("id")+"')");
     }
+}
+
+
+
+function padZeros_s(num, zeros){
+    return "0".repeat(zeros - num.length) + num;
 }
