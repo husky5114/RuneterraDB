@@ -19,6 +19,7 @@ function initializeAll(){
     initializeAllCards();
 }
 
+//Creates a image button element in the DOM for each region. Called when page is first opened
 function displayRegionHeader(){
     for(var i=0; i< regionNames.length; ++i){
         var region = regionNames[i];
@@ -26,16 +27,19 @@ function displayRegionHeader(){
         image.setAttribute("src", "Resources/Region_images/icon-" + region + ".png");
         image.setAttribute("id", region);
         image.setAttribute("onclick", "filter('"+region+"')");
-        if(region == "all"){
-                setHeader(image,true);
+
+        //The all regions button is pressed by default
+        if(region == "all"){ 
+            setHeader(image,true);
         }
-        else{
-                setHeader(image,false);
+        else{ 
+            setHeader(image,false);
         }
         document.getElementById("regions").appendChild(image);
     }
 }
 
+//Creates an image element in the DOM for every card. Called when page is first opened
 function initializeAllCards(){
     var rCountsArray = Object.values(regionCounts);
     for(var i=0; i < rCountsArray.length; ++i){
@@ -52,6 +56,7 @@ function initializeAllCards(){
     }
 }
 
+//Sets all cards of a region to display "inline" or "none". Called by filter()/unfilter()
 function displayRegionCards(region, show=true){
     if(region == "all"){
         var allCards = document.querySelectorAll(".card");
@@ -69,7 +74,6 @@ function displayRegionCards(region, show=true){
         var regionShort = regionCounts[region][0];
         for(var i=1; i<rCount; ++i){
             var card = document.getElementById(regionShort+padZeros_s(i.toString(),3));
-            console.log(card);
             try{
                 if(show){
                     card.style.display = "inline";
@@ -83,18 +87,19 @@ function displayRegionCards(region, show=true){
     }
 }
 
+//Card filter logic. Called on region image button press
 function filter(region){
-    var all = document.getElementById("all");
+    var allButton = document.getElementById("all");
     if(region == "all"){
         var activeRegions = document.querySelectorAll(".regionImagePressed");
         for(var i=0; i<activeRegions.length; ++i){
             setHeader(activeRegions[i],false);
         }
-        setHeader(all,true);
+        setHeader(allButton,true);
     }
     else{
-        if(all.getAttribute("class") == "regionImagePressed"){
-            setHeader(all,false);
+        if(isDown(allButton)){
+            setHeader(allButton,false);
             displayRegionCards("all",false);
         }
         var activeRegion = document.getElementById(region);
@@ -103,6 +108,7 @@ function filter(region){
     displayRegionCards(region);
 }
 
+//Opposite of filter(). Called on an already pressed region button
 function unfilter(region){
     var regionButton = document.getElementById(region);
     if(isDown(regionButton)){
@@ -116,10 +122,12 @@ function unfilter(region){
     }
 }
 
+//Checks if a region button is pressed or not
 function isDown(regionButton){
     return regionButton.getAttribute("class") == "regionImagePressed";
 }
 
+//Sets a region button to be pressed or unpressed
 function setHeader(regionButton, bool){
     if(bool){
         regionButton.setAttribute("class", "regionImagePressed");
@@ -131,8 +139,7 @@ function setHeader(regionButton, bool){
     }
 }
 
-
-
+//Adds extra zeroes to a number. Returns a String
 function padZeros_s(num, zeros){
     return "0".repeat(zeros - num.length) + num;
 }
