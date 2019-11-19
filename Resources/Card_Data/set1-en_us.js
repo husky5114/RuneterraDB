@@ -1,4 +1,4 @@
-var card_data = '[
+var card_data = [
   {
     "associatedCards": [],
     "associatedCardRefs": [],
@@ -14517,5 +14517,4 @@ var card_data = '[
     "type": "Spell",
     "collectible": true
   }
-]
-'
+];
