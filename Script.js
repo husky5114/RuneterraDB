@@ -156,14 +156,24 @@ function padZeros_s(num, zeros){
 
 function insertionSort(newItem, parentContainer){
     var currentCards = document.querySelectorAll(".card");
-    if(currentCards.length == 0){parentContainer.appendChild(newItem);}
-    for(i=0; i<currentCards.length; ++i){
-        if(newItem.getAttribute("data-supertype") == "Champion" && currentCards[i].getAttribute("data-supertype") != "Champion"){
-            console.log("added champion");
-            parentContainer.insertBefore(newItem,currentCards[i]);
+    if(currentCards.length == 0){
+        parentContainer.appendChild(newItem);
+    }
+    else{
+        for(var i=0; i<currentCards.length; ++i){
+            if(newItem.getAttribute("data-supertype") == "Champion" && currentCards[i].getAttribute("data-supertype") != "Champion"){
+                parentContainer.insertBefore(newItem,currentCards[i]);
+                return;
+            }
+            else if(newItem.getAttribute("data-supertype") == "Champion" && currentCards[i].getAttribute("data-supertype") == "Champion"){
+                for(var j=i-1; j >= 0; --j){
+                    if(newItem.getAttribute("data-cost") < currentCards[j].getAttribute("data-cost")){
+                        parentContainer.insertBefore(newItem,currentCards[j]);
+                        return;
+                    }
+                }
+            }
         }
-        else{
-            parentContainer.appendChild(newItem);
-        }
+        parentContainer.appendChild(newItem);
     }
 }
