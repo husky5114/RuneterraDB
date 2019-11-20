@@ -159,19 +159,40 @@ function insertionSort(newItem, parentContainer){
     var currentCards = document.querySelectorAll(".card");
     if(currentCards.length != 0){
         var index = currentCards.length-1;
-        while(newItem.getAttribute("data-supertype") == "Champion" && currentCards[index].getAttribute("data-supertype") != "Champion"){
-            if(index > 0){
-                --index;
-            }
+        while(compareAttributes(newItem,currentCards[index],"data-supertype","<")){
+            if(index > 0){--index;}
             else{
                 parentContainer.insertBefore(newItem,currentCards[index]);
                 return;
             }
         }
+        while(compareAttributes(newItem,currentCards[index],"data-cost","<") && compareAttributes(newItem,currentCards[index],"data-supertype","==")){
+            if(index > 0){--index;}
+            else{
+                parentContainer.insertBefore(newItem,currentCards[index])
+                return;
+            }
+        }
+        while(compareAttributes(newItem,currentCards[index],"data-attack","<") && compareAttributes(newItem,currentCards[index],"data-cost","==")){
+            if(index > 0){--index;}
+            else{
+                parentContainer.insertBefore(newItem,currentCards[index])
+                return;
+            }
+        }
+        while(compareAttributes(newItem,currentCards[index],"data-health","<") && compareAttributes(newItem,currentCards[index],"data-attack","==")){
+            if(index > 0){--index;}
+            else{
+                parentContainer.insertBefore(newItem,currentCards[index])
+                return;
+            }
+        }
+        parentContainer.insertBefore(newItem,currentCards[index+1]);
     }
-    parentContainer.appendChild(newItem);
+    else{parentContainer.appendChild(newItem);}
 }
 
+[C,N,N]
 
 function compareAttributes(A,B,attribute,comparison){
     var valueA = A.getAttribute(attribute);
@@ -183,6 +204,9 @@ function compareAttributes(A,B,attribute,comparison){
         if(comparison == ">"){
             return valueA != "Champion" && valueB == "Champion";
         }
+        if(comparison == "=="){
+            return valueA === valueB;
+        }
     }
-    return eval(valueA + comparison + valueB);
+    return eval(valueA +  comparison  + valueB);
 }
