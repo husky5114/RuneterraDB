@@ -7,12 +7,12 @@ initializeHTML();
 
 
 function initializeHTML(){
-    displayRegionHeader();
+    initializeHeader();
     initializeAllCards();
 }
 
 //Creates a image button element in the DOM for each region. Called when page is first opened
-function displayRegionHeader(){
+function initializeHeader(){
     var parent = document.getElementById("regions");
     for(var i=0; i< regionNames.length; ++i){
         var region = regionNames[i];
@@ -29,6 +29,25 @@ function displayRegionHeader(){
         }
         parent.appendChild(image);
     }
+
+    createSortMenu();
+}
+
+function createSortMenu(){
+    var sortMenu = document.createElement("select");
+    sortMenu.setAttribute("id", "sortMenu");
+    sortMenu.setAttribute("onchange", "sort()");
+    
+    var costAsc = document.createElement("option");
+    costAsc.innerText = "Cost (Asc)";
+
+    var costDesc = document.createElement("option");
+    costDesc.innerText = "Cost (Desc)";
+
+    sortMenu.appendChild(costAsc);
+    sortMenu.appendChild(costDesc);
+
+    document.getElementById("regions").appendChild(sortMenu);
 }
 
 
@@ -40,7 +59,14 @@ function initializeAllCards(){
         var card_html = document.createElement("img");
         card_html.setAttribute("src", "Resources/Card_images/"+card.cardCode+".png");
         card_html.setAttribute("class", "card " + card.regionRef);
-        parent.appendChild(card_html);
+        card_html.setAttribute("id", card.name);
+        card_html.setAttribute("data-attack", card.attack);
+        card_html.setAttribute("data-health", card.health);
+        card_html.setAttribute("data-cost", card.cost);
+        card_html.setAttribute("data-supertype",card.supertype);
+        card_html.setAttribute("data-collectible", card.collectible);
+
+        insertionSort(card_html,parent);
     }
 }
 
@@ -128,6 +154,16 @@ function padZeros_s(num, zeros){
     return "0".repeat(zeros - num.length) + num;
 }
 
-function setDefaultRegionState(regionButton){
-
+function insertionSort(newItem, parentContainer){
+    var currentCards = document.querySelectorAll(".card");
+    if(currentCards.length == 0){parentContainer.appendChild(newItem);}
+    for(i=0; i<currentCards.length; ++i){
+        if(newItem.getAttribute("data-supertype") == "Champion" && currentCards[i].getAttribute("data-supertype") != "Champion"){
+            console.log("added champion");
+            parentContainer.insertBefore(newItem,currentCards[i]);
+        }
+        else{
+            parentContainer.appendChild(newItem);
+        }
+    }
 }

@@ -34,7 +34,6 @@ h1 {
     text-align: center;
     background: linear-gradient(to top, black, dimgray);
     width: 100%;
-
 }
 
 
@@ -71,6 +70,14 @@ h1 {
 
 .regionImagePressed:focus {
     background: dimgray;
+}
+
+.dropDown-content {
+    display: none;
+}
+
+.dropDown:hover .dropDown-content{
+    display: inline;
 }
 
 #cards{
