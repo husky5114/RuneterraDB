@@ -154,26 +154,35 @@ function padZeros_s(num, zeros){
     return "0".repeat(zeros - num.length) + num;
 }
 
+//I am so sorry
 function insertionSort(newItem, parentContainer){
     var currentCards = document.querySelectorAll(".card");
-    if(currentCards.length == 0){
-        parentContainer.appendChild(newItem);
-    }
-    else{
-        for(var i=0; i<currentCards.length; ++i){
-            if(newItem.getAttribute("data-supertype") == "Champion" && currentCards[i].getAttribute("data-supertype") != "Champion"){
-                parentContainer.insertBefore(newItem,currentCards[i]);
+    if(currentCards.length != 0){
+        var index = currentCards.length-1;
+        while(newItem.getAttribute("data-supertype") == "Champion" && currentCards[index].getAttribute("data-supertype") != "Champion"){
+            if(index > 0){
+                --index;
+            }
+            else{
+                parentContainer.insertBefore(newItem,currentCards[index]);
                 return;
             }
-            else if(newItem.getAttribute("data-supertype") == "Champion" && currentCards[i].getAttribute("data-supertype") == "Champion"){
-                for(var j=i-1; j >= 0; --j){
-                    if(newItem.getAttribute("data-cost") < currentCards[j].getAttribute("data-cost")){
-                        parentContainer.insertBefore(newItem,currentCards[j]);
-                        return;
-                    }
-                }
-            }
         }
-        parentContainer.appendChild(newItem);
     }
+    parentContainer.appendChild(newItem);
+}
+
+
+function compareAttributes(A,B,attribute,comparison){
+    var valueA = A.getAttribute(attribute);
+    var valueB = B.getAttribute(attribute);
+    if(attribute == "data-supertype"){
+        if(comparison == "<"){
+            return valueA == "Champion" && valueB != "Champion";
+        }
+        if(comparison == ">"){
+            return valueA != "Champion" && valueB == "Champion";
+        }
+    }
+    return eval(valueA + comparison + valueB);
 }
