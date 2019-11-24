@@ -173,14 +173,14 @@ function insertionSort(newItem, parentContainer){
                 return;
             }
         }
-        while(compareAttributes(newItem,currentCards[index],"data-attack","<") && compareAttributes(newItem,currentCards[index],"data-cost","==")){
+        while(compareAttributes(newItem,currentCards[index],"data-attack","<") && compareAttributes(newItem,currentCards[index],"data-cost","==") && compareAttributes(newItem,currentCards[index],"data-supertype","==")){
             if(index > 0){--index;}
             else{
                 parentContainer.insertBefore(newItem,currentCards[index])
                 return;
             }
         }
-        while(compareAttributes(newItem,currentCards[index],"data-health","<") && compareAttributes(newItem,currentCards[index],"data-attack","==")){
+        while(compareAttributes(newItem,currentCards[index],"data-health","<") && compareAttributes(newItem,currentCards[index],"data-attack","==") && compareAttributes(newItem,currentCards[index],"data-cost","==") && compareAttributes(newItem,currentCards[index],"data-supertype","==")){
             if(index > 0){--index;}
             else{
                 parentContainer.insertBefore(newItem,currentCards[index])
@@ -192,7 +192,6 @@ function insertionSort(newItem, parentContainer){
     else{parentContainer.appendChild(newItem);}
 }
 
-[C,N,N]
 
 function compareAttributes(A,B,attribute,comparison){
     var valueA = A.getAttribute(attribute);
