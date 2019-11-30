@@ -1,9 +1,10 @@
 html {
-    
+    display: flex;
 }
 
 body {
-
+    position: relative;
+    height: 100%;
     margin: 0%;
 }
 
@@ -20,15 +21,13 @@ h1 {
     margin: 0%;
 }
 
-#Logo {
+.Logo {
     position: relative;
     width: 15%;
 }
 
 #regions {
-    position: relative;
     z-index: 1;
-    position: -webkit-sticky;
     position: sticky;
     top: 0%;
     text-align: center;
@@ -72,14 +71,6 @@ h1 {
     background: dimgray;
 }
 
-.dropDown-content {
-    display: none;
-}
-
-.dropDown:hover .dropDown-content{
-    display: inline;
-}
-
 #cards{
     position: relative;
     z-index: 0;
@@ -87,5 +78,56 @@ h1 {
 }
 
 .card {
-    width: 10%;
+    max-width: 10%;
 }
+
+@media (max-width: 1000px) {
+    .card{
+        max-width: 20%;
+    }
+
+    h1 {
+        border: 10px;
+    }
+
+    .logo {
+        width: 25%;
+        max-width: 25%;
+    }
+
+    .regionImage{
+        width: 8%;
+        max-width: 8%;
+    }
+
+    .regionImagePressed{
+        width: 8%;
+        max-width: 8%;
+    }
+}
+
+@media (max-width: 600px) {
+    .card{
+        max-width: 33.333333%;
+    }
+
+    h1{
+        border: 0;
+    }
+
+    .logo {
+        width: 50%;
+        max-width: 50%;
+    }
+
+    .regionImage{
+        width: 14.285714%;
+        max-width: 14.285714%;
+    }
+
+    .regionImagePressed{
+        width: 14.285714%;
+        max-width: 14.285714%;
+    }
+}
+

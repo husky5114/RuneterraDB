@@ -30,7 +30,7 @@ function initializeHeader(){
         parent.appendChild(image);
     }
 
-    createSortMenu();
+    //createSortMenu();
 }
 
 function createSortMenu(){
