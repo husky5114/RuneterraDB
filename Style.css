@@ -2,6 +2,11 @@ html {
     display: flex;
 }
 
+@font-face {
+    font-family: optimus-princeps;
+    src: url(Resources/OptimusPrinceps.ttf);
+  }
+
 body {
     position: relative;
     height: 100%;
@@ -13,17 +18,42 @@ body {
 }
 
 h1 {
+    font-family: optimus-princeps;
+    display: flex;
     position: relative;
     z-index: 2;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
     background: rgb(42, 42, 42);
-    border: 20px solid rgb(42, 42, 42);
+    border: 10px solid rgb(42, 42, 42);
     margin: 0%;
+}
+
+footer {
+    display: flex;
+    color: lightgray;
+    background: rgb(35, 35, 35);
+    margin: 0%;
+    align-content: space-between;
+}
+
+.disclaimer {
+    width: 50%;
+}
+
+.personal {
+    display: flex;
+    order: -1;
+    flex-direction: column;
+    align-content: space-around;
+    width: 50%;
 }
 
 .Logo {
     position: relative;
-    width: 15%;
+    font-size: 50px;
+    margin: 0%;
+    color: rgb(255, 202, 55);
 }
 
 #regions {
@@ -86,11 +116,7 @@ h1 {
         max-width: 20%;
     }
 
-    h1 {
-        border: 10px;
-    }
-
-    .logo {
+    .Logo {
         width: 25%;
         max-width: 25%;
     }
@@ -111,11 +137,7 @@ h1 {
         max-width: 33.333333%;
     }
 
-    h1{
-        border: 0;
-    }
-
-    .logo {
+    .Logo {
         width: 50%;
         max-width: 50%;
     }
