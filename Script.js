@@ -17,7 +17,7 @@ function initializeHeader(){
     for(var i=0; i< regionNames.length; ++i){
         var region = regionNames[i];
         var image = document.createElement("img");
-        image.setAttribute("src", "Resources/Region_images/icon-" + region.toLowerCase() + ".png");
+        image.setAttribute("src", "Resources/Region_Images/icon-" + region.toLowerCase() + ".png");
         image.setAttribute("id", region);
         image.setAttribute("onclick", "filter('"+region+"')");
         //The all regions button is pressed by default
@@ -57,7 +57,7 @@ function initializeAllCards(){
     for(var i=0; i < card_data.length; ++i){
         var card = card_data[i];
         var card_html = document.createElement("img");
-        card_html.setAttribute("src", "Resources/Card_images/"+card.cardCode+".png");
+        card_html.setAttribute("src", "Resources/Card_Images/"+card.cardCode+".png");
         card_html.setAttribute("class", "card " + card.regionRef);
         card_html.setAttribute("id", card.name);
         card_html.setAttribute("data-attack", card.attack);
