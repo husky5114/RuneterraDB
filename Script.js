@@ -57,7 +57,7 @@ function initializeAllCards(){
     for(var i=0; i < card_data.length; ++i){
         var card = card_data[i];
         var card_html = document.createElement("img");
-        card_html.setAttribute("src", "Resources/Card_Images/"+card.cardCode+".png");
+        card_html.setAttribute("src", "Resources/Card_Images/"+card.cardCode+" (CardOptimized).png");
         card_html.setAttribute("class", "card " + card.regionRef);
         card_html.setAttribute("id", card.name);
         card_html.setAttribute("data-attack", card.attack);
