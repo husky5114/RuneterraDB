@@ -102,15 +102,25 @@ footer {
 }
 
 #cards{
-    position: relative;
-    z-index: 0;
     background: rgb(42, 42, 42);
 }
 
 .card {
+    position: relative;
     max-width: 10%;
 }
 
+.card:hover {
+    transform: scale(1.5);
+    z-index: 5;
+}
+
+
+.cardHitbox {
+    position: relative;
+    width: 50%;
+    height: 50%;
+}
 @media (max-width: 1000px) {
     .card{
         max-width: 20%;

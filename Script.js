@@ -66,10 +66,10 @@ function initializeAllCards(){
         card_html.setAttribute("data-supertype",card.supertype);
         card_html.setAttribute("data-collectible", card.collectible);
 
+
         insertionSort(card_html,parent);
     }
 }
-
 
 //Sets all cards of a region to display "inline" or "none". Called by filter()/unfilter()
 function displayRegionCards(region, show=true){
