@@ -55,7 +55,7 @@ a {
 
 .Logo {
     position: relative;
-    font-size: 50px;
+    font-size: 60px;
     margin: 0%;
     color: rgb(255, 202, 55);
 }
@@ -119,14 +119,9 @@ a {
     z-index: 5;
 }
 
-@media (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
     .thumbnail{
         max-width: 20%;
-    }
-
-    .Logo {
-        width: 25%;
-        max-width: 25%;
     }
 
     .regionImage{
@@ -140,14 +135,9 @@ a {
     }
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .thumbnail{
         max-width: 33.333333%;
-    }
-
-    .Logo {
-        width: 50%;
-        max-width: 50%;
     }
 
     .regionImage{
