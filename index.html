@@ -4,6 +4,7 @@
     <head>
         <title>Gallery</title>
         <link rel="stylesheet" href="Style.css">
+        <link rel="stylesheet" href="lightbox.css"
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -23,11 +24,19 @@
         <span class="personal">
             <p>Created by: Bruce Tran</p>
             <p>Contact: husky5114@gmail.com</p>
+            <p>Credits: lightbox2 by <a href="https://lokeshdhakar.com/">Lokesh Dhakar</a> under the MIT license</p>
         </span>
     </footer>
 
     <script src="Resources/Card_Data/set1-en_us.js"></script>
     <script src="Script.js"></script>
+    <script src="lightbox-plus-jquery.js"></script>
+    <script>
+        lightbox.option({
+          'albumLabel': "Card %1 of %2",
+          'wrapAround': true
+        })
+    </script>
 
 </html>
 

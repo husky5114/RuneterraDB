@@ -49,6 +49,10 @@ footer {
     width: 50%;
 }
 
+a {
+    color: rgb(255, 202, 55);
+}
+
 .Logo {
     position: relative;
     font-size: 50px;
@@ -105,24 +109,18 @@ footer {
     background: rgb(42, 42, 42);
 }
 
-.card {
+.thumbnail {
     position: relative;
     max-width: 10%;
 }
 
-.card:hover {
+.thumbnail:hover {
     transform: scale(1.5);
     z-index: 5;
 }
 
-
-.cardHitbox {
-    position: relative;
-    width: 50%;
-    height: 50%;
-}
 @media (max-width: 1000px) {
-    .card{
+    .thumbnail{
         max-width: 20%;
     }
 
@@ -143,7 +141,7 @@ footer {
 }
 
 @media (max-width: 600px) {
-    .card{
+    .thumbnail{
         max-width: 33.333333%;
     }
 

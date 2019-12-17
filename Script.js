@@ -56,8 +56,8 @@ function initializeAllCards(){
     var parent =  document.getElementById("cards");
     for(var i=0; i < card_data.length; ++i){
         var card = card_data[i];
-        var card_html = document.createElement("img");
-        card_html.setAttribute("src", "Resources/Card_Images/"+card.cardCode+" (CardOptimized).png");
+        var card_html = document.createElement("a");
+        card_html.setAttribute("href", "Resources/Card_Images/"+card.cardCode+"-full.png");
         card_html.setAttribute("class", "card " + card.regionRef);
         card_html.setAttribute("id", card.name);
         card_html.setAttribute("data-attack", card.attack);
@@ -65,8 +65,13 @@ function initializeAllCards(){
         card_html.setAttribute("data-cost", card.cost);
         card_html.setAttribute("data-supertype",card.supertype);
         card_html.setAttribute("data-collectible", card.collectible);
+        card_html.setAttribute("data-lightbox", "cardImages");
 
+        var thumbnail = document.createElement("img");
+        thumbnail.setAttribute("src", "Resources/Card_Images/"+card.cardCode+" (CardOptimized).png");
+        thumbnail.setAttribute("class", "thumbnail");
 
+        card_html.appendChild(thumbnail);
         insertionSort(card_html,parent);
     }
 }
