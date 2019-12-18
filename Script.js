@@ -74,6 +74,7 @@ function initializeAllCards(){
         card_html.appendChild(thumbnail);
         insertionSort(card_html,parent);
     }
+    console.log("done");
 }
 
 //Sets all cards of a region to display "inline" or "none". Called by filter()/unfilter()
