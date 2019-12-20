@@ -65,6 +65,7 @@ function initializeAllCards(){
         card_html.setAttribute("data-cost", card.cost);
         card_html.setAttribute("data-supertype",card.supertype);
         card_html.setAttribute("data-collectible", card.collectible);
+        card_html.setAttribute("data-description", card.descriptionRaw);
         card_html.setAttribute("data-lightbox", "cardImages");
 
         var thumbnail = document.createElement("img");
@@ -214,4 +215,33 @@ function compareAttributes(A,B,attribute,comparison){
         }
     }
     return eval(valueA +  comparison  + valueB);
+}
+
+function search(input){
+    var text = input.value.toLowerCase();
+    //console.log(input.value);
+    var activeRegionsNodes = document.querySelectorAll(".regionImagePressed");
+    var activeRegions = "";
+    for(var i=0; i<activeRegionsNodes.length; ++i){
+        activeRegions += "." + activeRegionsNodes[i].getAttribute('id');
+        if(i<activeRegionsNodes.length-1){
+            activeRegions += ",";
+        }
+    }
+
+    if(activeRegions == ".All"){
+        var filteredCards = document.querySelectorAll(".card");
+    }
+    else{
+        var filteredCards = document.querySelectorAll(activeRegions);
+    }
+
+    for(var i=0; i<filteredCards.length; ++i){
+        if(filteredCards[i].getAttribute("id").toLowerCase().search(text) != -1 || filteredCards[i].getAttribute("data-description").toLowerCase().search(text) != -1){
+            filteredCards[i].style.display = "inline";
+        }
+        else{
+            filteredCards[i].style.display = "none";
+        }
+    }
 }
