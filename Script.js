@@ -19,6 +19,7 @@ function initializeHeader(){
         var image = document.createElement("img");
         image.setAttribute("src", "Resources/Region_Images/icon-" + region.toLowerCase() + ".png");
         image.setAttribute("id", region);
+        image.setAttribute("title", region);
         image.setAttribute("onclick", "filter('"+region+"')");
         //The all regions button is pressed by default
         if(region == "All"){ 
